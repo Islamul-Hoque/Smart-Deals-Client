@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+    themes: light --default;
+}
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+    --color-primary: blue;
+    --color-secondary: teal;
+}
+
+.text-gradient {
+  @apply bg-[linear-gradient(125.07deg,#632EE3,#9F62F2_100%)] bg-clip-text text-transparent ;
+}
+
+.btn-primary {
+    @apply btn btn-sm shadow-none text-white border-none bg-[linear-gradient(125.07deg,#632EE3,#9F62F2_100%)] hover:opacity-90;
+}
+.btn-primary-w-full {
+    @apply btn w-full shadow-none text-white border-none bg-[linear-gradient(125.07deg,#632EE3,#9F62F2_100%)] hover:opacity-90;
+}
+
+.btn-secondary {
+    @apply btn btn-sm shadow-none text-shadow-2xs border-[1.5px] border-purple-600 text-transparent bg-clip-text bg-[linear-gradient(125.07deg,#632EE3,#9F62F2_100%)] hover:text-white hover:bg-[linear-gradient(125.07deg,#632EE3,#9F62F2_100%)] hover:bg-clip-border transition-all duration-300;
+}
+
+.btn-secondary-w-full { 
+    @apply btn  w-full shadow-none border-[1.5px] border-purple-600 text-transparent bg-clip-text bg-[linear-gradient(125.07deg,#632EE3,#9F62F2_100%)] hover:text-white hover:bg-[linear-gradient(125.07deg,#632EE3,#9F62F2_100%)] hover:bg-clip-border transition-all duration-300;
+}

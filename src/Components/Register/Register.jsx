@@ -78,7 +78,7 @@ const Signup = () => {
                 }
 
                 // create user in the database
-                fetch('http://localhost:3000/user', {
+                fetch('https://smart-deals-api-server-weld.vercel.app/user', {
                     method: 'POST',
                     headers: {
                         "Content-type" : "application/json"
@@ -136,7 +136,7 @@ const Signup = () => {
                         <hr className="flex-1 border-gray-200" />
                     </div>
 
-                    <button onClick={handleGoogleSignIn} className="btn w-full hover:bg-green-50 bg-white text-black rounded-md border border-[#e5e5e5] flex items-center justify-center gap-2"> <FcGoogle size={18}/>Login with Google</button>
+                    <button onClick={handleGoogleSignIn} className="btn w-full bg-white text-black rounded-md border border-[#e5e5e5] flex items-center justify-center gap-2"> <FcGoogle size={18}/>Login with Google</button>
 
                 </div>
             </div>

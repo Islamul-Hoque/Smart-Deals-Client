@@ -39,14 +39,13 @@ const AuthProvider = ( {children} ) => {
         return sendPasswordResetEmail(auth, email)
     }
 
-
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if(currentUser) {
                 const email = currentUser.email || currentUser.providerData?.[0]?.email;
                 setUser({ ...currentUser, email });
                     const loggedUser = { email: currentUser.email }
-                    fetch('http://localhost:3000/getToken', {
+                    fetch('https://smart-deals-api-server-weld.vercel.app/getToken', {
                         method: 'POST',
                         headers: {
                             'Content-type' : 'application/json'
@@ -55,7 +54,7 @@ const AuthProvider = ( {children} ) => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log( 'after getting token' ,data.token);
+                            // console.log( 'after getting token' ,data.token);
 
                             // Step-2: Token store
                             localStorage.setItem('token', data.token)

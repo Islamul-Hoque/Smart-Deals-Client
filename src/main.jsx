@@ -16,6 +16,7 @@ import PrivateRouter from './Route/PrivateRouter.jsx';
 import MyProducts from './Components/MyProducts/MyProducts.jsx';
 import AllProducts from './Components/AllProducts/AllProducts.jsx';
 import Loading from './Components/Loading/Loading.jsx';
+import CreateProduct from './Components/CreateAProduct/CreateProduct.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
         },
         {
           path: 'productDetails/:id',
-          loader: ({params})=> fetch(`http://localhost:3000/products/${params.id}`),
+          loader: ({params})=> fetch(`https://smart-deals-api-server-weld.vercel.app/products/${params.id}`),
           element: <PrivateRouter> <ProductDetails/> </PrivateRouter>
           // Component: ProductDetails
         },
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         {
           path: 'myBids',
           element: <PrivateRouter> <MyBids/> </PrivateRouter>
+        },
+        {
+          path: 'createProduct',
+          element: <PrivateRouter> <CreateProduct/> </PrivateRouter>
         },
         {
           path: '/register',

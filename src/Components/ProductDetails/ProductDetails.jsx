@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import { AuthContext } from '../../Context/AuthProvider';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import axios from 'axios';
 const MySwal = withReactContent(Swal)
 
 
@@ -39,7 +40,7 @@ const ProductDetails = () => {
             status: 'pending'
         }
 
-            fetch('http://localhost:3000/bids', {
+            fetch('https://smart-deals-api-server-weld.vercel.app/bids', {
                 method: 'POST',
                 headers: {
                     "Content-type": 'application/json'
@@ -67,16 +68,28 @@ const ProductDetails = () => {
 
     //Bids & Token related APIs
     useEffect(()=> {
-        fetch(`http://localhost:3000/products/bids/${productId}`, {
+        axios.get(`https://smart-deals-api-server-weld.vercel.app/products/bids/${productId}`, {
             headers: {
-                authorization : `Bearer ${user.accessToken}` 
+                Authorization: `Bearer ${user.accessToken}`
             }
         })
-            .then(res => res.json())
             .then(data => {
-                setBids(data)
+                console.log('axios', data.data);
+                setBids(data.data)
             })
     }, [productId, user])
+
+    // useEffect(()=> {
+    //     fetch(`https://smart-deals-api-server-weld.vercel.app/products/bids/${productId}`, {
+    //         headers: {
+    //             authorization : `Bearer ${user.accessToken}` 
+    //         }
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setBids(data)
+    //         })
+    // }, [productId, user])
 
     return (
         <div className='p-10 bg-gray-100'>

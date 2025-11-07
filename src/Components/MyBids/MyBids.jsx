@@ -1,29 +1,39 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const MyBids = () => {
     const {user} = useContext(AuthContext)
     const [bids, setBids] = useState([])
 
+    const axiosSecret = useAxiosSecure()
+
     useEffect(()=> {
-        if(user?.email){
-            fetch(`http://localhost:3000/bids?email=${user.email}`, {
-                headers: {
-                    // Step-3: Token send to localStorage
-                    authorization: `Bearer ${localStorage.getItem('token')}`
-                }
+        axiosSecret.get(`/bids?email=${user.email}`)
+            .then(data => {
+                setBids(data.data)
             })
-                .then(res => res.json())
-                .then(data => {
-                    setBids(data)
-                })
-        }
-    }, [user])
+    }, [user, axiosSecret])
 
     // useEffect(()=> {
     //     if(user?.email){
-    //         fetch(`http://localhost:3000/bids?email=${user.email}`, {
+    //         fetch(`https://smart-deals-api-server-weld.vercel.app/bids?email=${user.email}`, {
+    //             headers: {
+    //                 // Step-3: Token send to localStorage
+    //                 authorization: `Bearer ${localStorage.getItem('token')}`
+    //             }
+    //         })
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 setBids(data)
+    //             })
+    //     }
+    // }, [user])
+
+    // useEffect(()=> {
+    //     if(user?.email){
+    //         fetch(`https://smart-deals-api-server-weld.vercel.app/bids?email=${user.email}`, {
     //             headers: {
     //                 authorization: `Bearer ${user.accessToken}`
     //             }
@@ -49,7 +59,7 @@ const MyBids = () => {
         }).then((result) => {
 
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/bids/${ _id }`,{
+                fetch(`https://smart-deals-api-server-weld.vercel.app/bids/${ _id }`,{
                     method: "DELETE",
                 })
                     .then(res => res.json())

@@ -30,7 +30,7 @@ export default function Navbar() {
             </>
         }
 
-        <li><NavLink end className={activeClass} to='/Create-Product'>Create Product</NavLink></li>
+        <li><NavLink end className={activeClass} to='/createProduct'>Create Product</NavLink></li>
         </>
     );
 
